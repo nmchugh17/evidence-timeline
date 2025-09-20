@@ -1,0 +1,95 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  evidence-timeline-backend
+
+  SAM Template for Evidence Timeline backend
+
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 128
+
+Resources:
+  GetEventsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./GetEventsFunction
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      Environment:
+        Variables:
+          EVENTS_TABLE: TimelineEvents
+          DYNAMODB_ENDPOINT: http://localhost:8000
+  AddUpdateEventFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./AddUpdateEventFunction
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      Layers:
+        - arn:aws:lambda:eu-west-1:017000801446:layer:AWSLambdaPowertoolsPythonV3-python39-x86_64:14
+      Environment:
+        Variables:
+          EVENTS_TABLE: TimelineEvents
+          MEDIA_BUCKET: evidence-timeline-media
+          S3_ENDPOINT: http://host.docker.internal:4566
+  DeleteEventsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./DeleteEventsFunction
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      Environment:
+        Variables:
+          EVENTS_TABLE: TimelineEvents
+          MEDIA_BUCKET: evidence-timeline-media
+          S3_ENDPOINT: http://localhost:4566
+  LoginFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./LoginFunction
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      Environment:
+        Variables:
+          USERS_TABLE: Users
+          DYNAMODB_ENDPOINT: http://localhost:8000
+  GetTimelinesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./GetTimelinesFunction
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      Environment:
+        Variables:
+          DYNAMODB_ENDPOINT: http://localhost:8000
+  AddTimelineFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./AddTimelineFunction
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      Environment:
+        Variables:
+          DYNAMODB_ENDPOINT: http://localhost:8000
+  ManageUsersFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./ManageUsersFunction
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      Environment:
+        Variables:
+          USERS_TABLE: Users
+          DYNAMODB_ENDPOINT: http://localhost:8000
+  RegisterFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./RegisterFunction
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      Environment:
+        Variables:
+          USERS_TABLE: Users
+          DYNAMODB_ENDPOINT: http://localhost:8000

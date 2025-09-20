@@ -1,0 +1,15 @@
+{
+  "name": "evidence-timeline-frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "http-server -p 8080",
+    "deploy": "aws s3 sync . s3://evidence-timeline-uploads --exclude 'node_modules/*' --exclude 'package-lock.json' --acl public-read"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.1",
+    "http-server": "^14.1.1",
+    "prettier": "^3.6.2"
+  }
+}

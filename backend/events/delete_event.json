@@ -1,0 +1,6 @@
+{
+  "httpMethod": "DELETE",
+  "headers": {"X-Auth-Email": "nmchu17@gmail.com"},
+  "pathParameters": {"eventId": "test-event-id"},
+  "queryStringParameters": {"timelineName": "yuyuyu"}
+}

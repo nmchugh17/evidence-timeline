@@ -1,0 +1,5 @@
+{
+  "httpMethod": "POST",
+  "headers": {"X-Auth-Email": "nmchu17@gmail.com"},
+  "body": "{\"username\": \"nmchu17\", \"password\": \"your_password\"}"
+}

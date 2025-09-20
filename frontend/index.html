@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evidence Timeline</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+  <link rel="stylesheet" href="style.css?v=2025070919">
+</head>
+<body>
+  <div id="loading-overlay" style="display:none;">
+    <div class="spinner"></div>
+  </div>
+  <div id="taskbar" style="display:none;">
+    <div class="taskbar-content">
+      <div class="taskbar-left">
+        <span class="taskbar-title">Timeline</span>
+        <select id="timeline-select" style="margin-left: 10px;"></select>
+      </div>
+      <div class="taskbar-center">
+        <span id="selected-timeline">No Timeline Selected</span>
+      </div>
+      <div class="taskbar-right">
+        <button id="add-timeline-button" style="display:none;">Add Timeline</button>
+        <button id="logout-button">Logout</button>
+      </div>
+    </div>
+  </div>
+  <div id="timeline-error" class="error-message" style="display:none; text-align:center; margin-top:10px;"></div>
+  <div id="login-screen" class="login-screen">
+    <div class="auth-toggle">
+      <button id="show-login" class="active">Login</button>
+      <button id="show-register">Register</button>
+    </div>
+    <div id="login-form-container">
+      <h1>Login to Evidence Timeline</h1>
+      <form id="login-form">
+        <input type="email" id="email-input" placeholder="Enter email" autocomplete="off" required>
+        <input type="password" id="password-input" placeholder="Enter password" autocomplete="off" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    <div id="register-form-container" style="display:none;">
+      <h1>Register for Evidence Timeline</h1>
+      <form id="register-form">
+        <input type="email" id="register-email" placeholder="Enter email" autocomplete="off" required>
+        <input type="text" id="register-username" placeholder="Enter username" autocomplete="off" required>
+        <input type="password" id="register-password" placeholder="Enter password" autocomplete="off" required>
+        <input type="text" id="register-firstName" placeholder="Enter first name" autocomplete="off" required>
+        <input type="text" id="register-surname" placeholder="Enter surname" autocomplete="off" required>
+        <label>
+          <input type="checkbox" id="register-requestTimeline">
+          Request permission to manage my own timeline
+        </label>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+    <div id="auth-error" class="error-message"></div>
+  </div>
+  <div id="main-content" style="display:none;">
+    <h1 class="title">Timeline</h1>
+    <div id="add-event-section" style="display:none;">
+      <h2>Add/Edit Event</h2>
+      <form id="event-form">
+        <label>
+          Date/Time:
+          <input type="datetime-local" id="event-time" required>
+        </label>
+        <label>
+          Select Image or Audio:
+          <input type="file" id="image-file" accept="image/*,audio/*">
+        </label>
+        <label>
+          Description:
+          <textarea id="event-text" rows="3" required></textarea>
+        </label>
+        <button type="submit">Add Event</button>
+        <button type="button" id="clear-form">Clear</button>
+      </form>
+      <div id="cropper-modal" style="display:none; margin-top:20px;">
+        <div id="cropper-placeholder" style="display:none; text-align:center; color:#E0E0E0; font-size:1rem; padding:20px;">
+          Please re-upload an image to crop.
+        </div>
+        <img id="cropper-image" style="max-width:100%; display:none;">
+        <div id="cropper-controls" style="display:none;">
+          <select id="aspect-ratio">
+            <option value="">Freeform</option>
+            <option value="1">1:1 (Square)</option>
+            <option value="1.333">4:3</option>
+            <option value="1.777">16:9</option>
+          </select>
+        </div>
+        <button id="crop-confirm" style="margin-top:10px; display:none;">Crop & Use</button>
+      </div>
+    </div>
+    <div id="timeline" class="timeline-container"></div>
+  </div>
+  <div id="image-overlay" style="display:none;">
+    <img src="" alt="Expanded Event Image">
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+  <script src="script.js?v=2025071129"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+{
+  "httpMethod": "POST",
+  "headers": {"X-Auth-Email": "nmchu17@gmail.com"},
+  "body": "{\"date\": \"2025-07-12T12:00:00Z\", \"description\": \"Test event\", \"timelineName\": \"yuyuyu\"}"
+}
